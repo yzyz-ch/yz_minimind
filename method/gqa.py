@@ -4,7 +4,7 @@ import torch.nn as nn
 # dropout layer
 print("dropout layer")
 dropout_layer = nn.Dropout(p=0.5)
-t1 = torch.tensor([1, 2, 3, 4, 5])
+t1 = torch.tensor([1, 2, 3, 4, 5], dtype=torch.float32)
 t2 = dropout_layer(t1)
 print(t2)
 # 这里dropout_layer会随机将50%的元素置为0。 同时为了保持期望不变，会将其余元素乘以1/(1-p)
@@ -18,8 +18,8 @@ print(t2)
 # 权重矩阵的形状是(out_features, in_features)， 偏置向量的形状是(out_features)
 print("linear layer")
 linear_layer = nn.Linear(in_features=3, out_features=5, bias=True)
-t1 = torch.tensor([1, 2, 3]) #shape: (3)
-t2 = torch.tensor([[4, 5, 6]]) #shape: (1, 3)
+t1 = torch.tensor([1., 2., 3.], dtype=torch.float32) #shape: (3)
+t2 = torch.tensor([[4., 5., 6.]], dtype=torch.float32) #shape: (1, 3)
 print(linear_layer.weight)       # W，shape: (5, 3)
 print(linear_layer.bias)         # b，shape: (5,)
 # 这里会随机初始化权重矩阵和偏置向量
@@ -29,11 +29,22 @@ print(output)
 # view
 # view会改变张量的形状， 但是不会改变张量的数据
 print("view")
-t4 = torch.tensor([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]]) #[2, 5]
+t4 = torch.tensor([[1., 2., 3., 4., 5.], [6., 7., 8., 9., 10.]]) #[2, 5]
+print(t4.dtype)
 t4_view = t4.view(5, 2) #[5, 2]
 print(t4_view)
 # 这里t4_view的形状是(5, 2)， 但是数据还是[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 # 所以， view不会改变张量的数据， 只是改变张量的形状
+
+#transpose
+#transpose会交换张量的两个维度
+print("transpose")
+t5 = torch.tensor([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]]) #[2, 5]
+t5_transpose = t5.transpose(0, 1) #[5, 2]
+print(t5)
+print(t5_transpose)
+# 这里t5_transpose的形状是(5, 2)， 但是数据还是[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# 所以， transpose会改变张量的数据， 只是改变张量的形状
 
 
 
