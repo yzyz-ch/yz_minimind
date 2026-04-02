@@ -36,7 +36,7 @@ c = torch.cat((a, b))
 # [1, 2, 3, 4, 5, 6]
 # 拼接: 将两个张量a和b按指定维度拼接在一起
 print(c)
-t1 = torch.tensor([[1, 2, 3], [4, 5, 6]], [7, 8, 9], [10, 11, 12])
+t1 = torch.tensor([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])
 t2 = torch.tensor([[13, 14, 15], [16, 17, 18], [19, 20, 21]])
 c = torch.cat((t1, t2), dim=0)
 # [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15], [16, 17, 18], [19, 20, 21]]
@@ -52,6 +52,35 @@ b = a.unsqueeze(0)
 print(b)
 print(a.shape)
 print(b.shape)
+
+#[: (dim // 2)] 取前dim//2个
+print("[: (dim // 2)] 取前dim//2个:")
+t = torch.arange(0, 10, 2)
+print(t[: (10 // 2)])
+
+#lambda用法: 定义一个匿名函数
+print("lambda用法:")
+f = lambda x, y=2: (x + y) * 3 if x > 0 else 0
+print(f(1))
+print(f(4,5))
+
+#floor用法: 向下取整
+print("floor用法:")
+t = torch.tensor([1.2, 2.3, 3.4, 4.5, 5.6])
+print(torch.floor(t))
+#ceil用法: 向上取整
+print("ceil用法:")
+t = torch.tensor([1.2, 2.3, 3.4, 4.5, 5.6])
+print(torch.ceil(t))
+#round用法: 四舍五入
+print("round用法:")
+t = torch.tensor([1.2, 2.3, 3.4, 4.5, 5.6])
+print(torch.round(t))
+
+#clamp用法: 限制张量元素的值在一定范围内
+print("clamp用法:")
+t = torch.tensor([1.2, 2.3, 3.4, 4.5, 5.6])
+print(torch.clamp(t, min=2, max=4))
 
 
 
